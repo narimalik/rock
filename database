@@ -1,0 +1,46 @@
+<?php
+class Database{
+	
+	private $dbname = "test";
+	private $dbhost = "localhost";
+	private $dbuser= "root";
+	private $dbpass = "";
+	
+	private $query ="";
+	private $rows;
+	
+	public function __construct (){
+		$dblink = mysql_connect($this->dbhost,$this->dbuser,$this->dbpass);
+		if($dblink){
+			if(mysql_select_db($this->dbname,$dblink)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public function query($query){
+		$this->query = mysql_query($query) or die("Error in run : ".mysql_error());		
+	}
+	
+	public function fetchResult(){
+		if($this->query){
+			return mysql_fetch_array($this->query);
+		}
+	}
+	
+	public function totalRec(){
+		if($this->query !=""){
+			return mysql_num_rows($this->query);
+		}
+	}
+	
+}
+
+
+?>
