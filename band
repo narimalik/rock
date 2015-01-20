@@ -1,0 +1,144 @@
+<?php
+include("database.php");
+include("interface.php");
+
+class Band implements BandInterface{
+	
+	private $connection = "";
+	private $sql="";
+	
+	private $bandId="";
+	
+	private $name="";
+	private $basecity="";
+	private $song= "";
+	private $album = "";
+	
+	
+	
+	public function __construct(){
+		$this->connection = new Database();
+	}
+	
+	
+	public function setBandId($id){
+		$this->bandId=$id;
+	}
+	
+	public function setName($name){
+		$this->name=$name;
+	}
+	
+	public function setBasecity($basecity){
+		$this->basecity=$basecity;
+	}
+	
+	public function setSong($song){
+		$this->song=$song;
+	}
+	
+	public function setAlbum($album){
+		$this->album=$album;
+	}
+	
+	
+	
+	
+	public function getBandId(){
+		return $this->bandId;
+	}
+	
+	public function getName(){
+		return $this->name;
+	}
+	
+	public function getBasecity(){
+		return $this->basecity;
+	}
+	
+	public function getSong(){
+		return $this->song;
+	}
+	
+	public function getAlbum(){
+		return $this->album;
+	}
+	
+	
+	
+	public function getBandById($id){
+		$this->sql = "select * from band where id=".$id;
+		$this->connection->query($this->sql);
+		if($this->connection->totalRec() > 0){
+			
+			$resultSet = $this->connection->fetchResult();
+			
+			$this->setBandId($resultSet['id']);
+			$this->setName($resultSet['name']);
+			$this->setBasecity($resultSet['basecity']);
+			$this->setSong($resultSet['song']);
+			$this->setAlbum($resultSet['album']);
+			
+		}
+	}
+		
+	
+	
+	
+	public function addBand(){
+		$this->sql = "insert into band(name,basecity,song,album) values(
+		'".$this->name."',
+		'".$this->basecity."',
+		'".$this->song."',
+		'".$this->album."'		
+		)";
+		$this->connection->query($this->sql);
+	}
+	
+	
+	public function save(){
+		if($this->bandId != ""){
+			
+			if($this->name!=""){
+				$this->sql = "update band set name='".$this->name."' where id=".$this->bandId;				
+				$this->connection->query($this->sql);
+			}
+			
+			if($this->basecity!=""){
+				$this->sql = "update band set basecity='".$this->basecity."' where id=".$this->bandId;				
+				$this->connection->query($this->sql);
+			}
+			
+			if($this->song!=""){
+				$this->sql = "update band set song='".$this->song."' where id=".$this->bandId;				
+				$this->connection->query($this->sql);
+			}
+			
+			if($this->album!=""){
+				$this->sql = "update band set album='".$this->album."' where id=".$this->bandId;				
+				$this->connection->query($this->sql);
+			}
+			
+		}else{
+			return false;
+		}
+	}
+	
+	
+
+}
+
+$objBand = new Band();
+
+//$objBand->setBandId(2);
+/*$objBand->setName("Anwaar1");
+$objBand->setBasecity("Glasgow1");
+$objBand->setSong(21);
+$objBand->setAlbum(11);
+*/
+//$objBand->getBandById(22);
+//echo $objBand->getname();
+
+//$objBand->save();
+
+?>
