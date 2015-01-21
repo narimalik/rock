@@ -1,0 +1,34 @@
+<?php
+
+/*****************************************************
+
+TASK 3:
+Its first time i am dong API without database. I can use XML file and parse it by simplexml_load_file and show data, 
+For Adding new record we can use DOMDocument() class, because its first time i am using this so its taking so long and i am 
+already runing behind. So i am just going to give you an idea how it works with CURL. 
+
+/list
+/add
+/delet
+/view
+to handle above URL Endpoint we can use .HTaccess file
+*****************************************************/
+
+
+function apiCall($data, $method){
+
+$curl = curl_init();
+
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl,CURLOPT_URL,"http://localhost/api/api.php");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$ret = curl_exec($curl);
+return $ret;
+}
+$data = 4;
+$res =  apiCall($data, "GET");
+
+$aar = json_decode($res);
+echo $aar->name;
+?>
