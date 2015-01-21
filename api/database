@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<resultset>
+	<band>
+		<bandid>
+			1000		
+		</bandid>
+		<name>
+			anwaar
+		</name>
+	</band>
+	
+	<band>
+		<bandid>
+			1001		
+		</bandid>
+		<name>
+			anwaar1
+		</name>
+	</band>
+	
+	<band>
+		<bandid>
+			1002		
+		</bandid>
+		<name>
+			anwaar2
+		</name>
+	</band>
+	
+</resultset>
+
