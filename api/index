@@ -3,7 +3,7 @@
 /*****************************************************
 
 TASK 3:
-Its first time i am dong API without database. I can use XML file and parse it by simplexml_load_file and show data, 
+Its first time i am doing RestAPI without database. I can use XML file and parse it by simplexml_load_file and show data, 
 For Adding new record we can use DOMDocument() class, because its first time i am using this so its taking so long and i am 
 already runing behind. So i am just going to give you an idea how it works with CURL. 
 
@@ -12,6 +12,7 @@ already runing behind. So i am just going to give you an idea how it works with 
 /delet
 /view
 to handle above URL Endpoint we can use .HTaccess file
+
 *****************************************************/
 
 
