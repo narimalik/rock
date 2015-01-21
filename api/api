@@ -1,0 +1,38 @@
+<?php
+//echo $_SERVER['REQUEST_URI'];
+$respose="";
+$method = $_SERVER['REQUEST_METHOD'];
+
+
+
+$databasefile = simplexml_load_file("database.xml");
+
+$res= $databasefile->children()->children()->name;
+
+
+
+
+switch($method){
+case "GET": 
+	$data = array("name"=>"BandName","totalsong"=>"50");
+	$respose = json_encode($data);
+	
+	break;
+
+case "POST": 
+echo "Its post";
+break;
+
+case "PUT": 
+echo "Its put";
+break;
+
+case "DELETE": 
+	$id =  file_get_contents('php://input');
+	// Delete Record where against $id
+	$respose = 200;
+	break;
+}
+
+echo $respose;
+?>
